@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ habit.name }} — Analytics{% endblock %}
+{% block page_title %}Habit Analytics{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto space-y-8">
+
+    <!-- Header -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <div class="flex justify-between items-start">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">{{ habit.name }}</h1>
+                <p class="text-gray-500 mt-2">{{ habit.description }}</p>
+                <span class="inline-block mt-3 px-3 py-1 rounded-full text-sm font-semibold
+                    {% if habit.periodicity == 'daily' %}bg-blue-100 text-blue-700{% else %}bg-purple-100 text-purple-700{% endif %}">
+                    {{ habit.get_periodicity_display }}
+                </span>
+            </div>
+            <a href="{% url 'dashboard' %}" class="text-blue-500 hover:text-blue-700 text-sm font-medium">← Back</a>
+        </div>
+    </div>
+
+    <!-- Stats cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center">
+            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <span class="text-2xl">🔥</span>
+            </div>
+            <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Current Streak</p>
+            <p class="text-4xl font-extrabold text-gray-800">{{ current_streak }}</p>
+            <p class="text-sm text-gray-400 mt-1">
+                {% if habit.periodicity == 'daily' %}days{% else %}weeks{% endif %}
+            </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center">
+            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <span class="text-2xl">🏆</span>
+            </div>
+            <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Longest Streak</p>
+            <p class="text-4xl font-extrabold text-gray-800">{{ longest_streak }}</p>
+            <p class="text-sm text-gray-400 mt-1">
+                {% if habit.periodicity == 'daily' %}days{% else %}weeks{% endif %}
+            </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center">
+            <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <span class="text-2xl">📅</span>
+            </div>
+            <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-1">Streak Started</p>
+            {% if streak_started %}
+            <p class="text-2xl font-extrabold text-gray-800">{{ streak_started|date:"M j" }}</p>
+            <p class="text-sm text-gray-400 mt-1">{{ streak_started|date:"Y" }}</p>
+            {% else %}
+            <p class="text-2xl font-extrabold text-gray-400">—</p>
+            <p class="text-sm text-gray-400 mt-1">No active streak</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <!-- 30-day calendar -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">30-Day History</h2>
+        <p class="text-sm text-gray-400 mb-6">Blue = completed &nbsp;·&nbsp; Grey = missed</p>
+
+        <div class="grid grid-cols-7 gap-2 text-center">
+            <!-- Day-of-week headers -->
+            {% for d in weekdays %}
+            <div class="text-xs font-semibold text-gray-400 pb-2">{{ d }}</div>
+            {% endfor %}
+
+            {% for day in calendar_days %}
+            <div class="aspect-square flex flex-col items-center justify-center rounded-lg text-xs font-medium
+                {% if day.completed %}
+                    bg-blue-600 text-white
+                {% else %}
+                    bg-gray-100 text-gray-500
+                {% endif %}"
+                title="{{ day.date|date:'N j, Y' }}">
+                <span class="text-xs opacity-75">{{ day.date|date:"D"|slice:":1" }}</span>
+                <span class="font-bold">{{ day.date|date:"j" }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex space-x-4">
+        <a href="{% url 'edit_habit' habit.pk %}"
+           class="flex-1 text-center bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
+            ✏️ Edit Habit
+        </a>
+        <a href="{% url 'delete_habit' habit.pk %}"
+           class="flex-1 text-center bg-red-50 text-red-600 border border-red-200 py-3 rounded-xl font-semibold hover:bg-red-100 transition-colors">
+            🗑 Delete Habit
+        </a>
+    </div>
+
+</div>
+{% endblock %}

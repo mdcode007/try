@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Habit — TRAC{% endblock %}
+{% block page_title %}Create New Habit{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <p class="text-gray-500 mb-8">Define your new habit below. Choose daily for habits you want to do every day, or weekly for those you want at least once a week.</p>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            <div>
+                <label for="id_name" class="block text-sm font-semibold text-gray-700 mb-2">Habit Name</label>
+                <input type="text" name="name" id="id_name" placeholder="e.g. Drink 8 glasses of water"
+                       class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+            </div>
+
+            <div>
+                <label for="id_description" class="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+                <textarea name="description" id="id_description" rows="3"
+                          placeholder="What does completing this habit look like?"
+                          class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+            </div>
+
+            <div>
+                <label for="id_periodicity" class="block text-sm font-semibold text-gray-700 mb-2">Frequency</label>
+                <select name="periodicity" id="id_periodicity"
+                        class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white">
+                    <option value="daily">📅 Daily — every day</option>
+                    <option value="weekly">📆 Weekly — at least once per week</option>
+                </select>
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
+                ✅ Create Habit
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <a href="{% url 'dashboard' %}" class="text-gray-400 hover:text-gray-600 text-sm">← Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

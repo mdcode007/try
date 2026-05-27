@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Habit — TRAC{% endblock %}
+{% block page_title %}Delete Habit{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto">
+    <div class="bg-white rounded-2xl shadow-sm border border-red-100 p-8 text-center">
+
+        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl">🗑</span>
+        </div>
+
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Delete this habit?</h2>
+        <p class="text-gray-500 mb-2">
+            You are about to permanently delete <strong class="text-gray-800">{{ object.name }}</strong>.
+        </p>
+        <p class="text-sm text-red-500 mb-8">
+            This will also delete all completion history for this habit. This action cannot be undone.
+        </p>
+
+        <form method="POST" class="flex space-x-4">
+            {% csrf_token %}
+            <a href="{% url 'dashboard' %}"
+               class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors text-center">
+                Cancel
+            </a>
+            <button type="submit"
+                    class="flex-1 bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition-colors">
+                Yes, Delete
+            </button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

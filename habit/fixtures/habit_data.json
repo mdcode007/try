@@ -1,0 +1,62 @@
+[
+  {
+    "model": "habit.habit",
+    "pk": 1,
+    "fields": {
+      "name": "Drink Water",
+      "description": "Drink 8 glasses of water throughout the day",
+      "user": 1,
+      "periodicity": "daily",
+      "created_at": "2025-01-01T08:00:00Z",
+      "updated_at": "2025-01-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "habit.habit",
+    "pk": 2,
+    "fields": {
+      "name": "Read a Book",
+      "description": "Read at least 20 pages every day",
+      "user": 1,
+      "periodicity": "daily",
+      "created_at": "2025-01-01T08:00:00Z",
+      "updated_at": "2025-01-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "habit.habit",
+    "pk": 3,
+    "fields": {
+      "name": "Exercise",
+      "description": "30 minutes of physical activity",
+      "user": 1,
+      "periodicity": "daily",
+      "created_at": "2025-01-01T08:00:00Z",
+      "updated_at": "2025-01-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "habit.habit",
+    "pk": 4,
+    "fields": {
+      "name": "Go to Gym",
+      "description": "Full gym workout session",
+      "user": 1,
+      "periodicity": "weekly",
+      "created_at": "2025-01-01T08:00:00Z",
+      "updated_at": "2025-01-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "habit.habit",
+    "pk": 5,
+    "fields": {
+      "name": "Grocery Shopping",
+      "description": "Buy fresh produce and essentials for the week",
+      "user": 1,
+      "periodicity": "weekly",
+      "created_at": "2025-01-01T08:00:00Z",
+      "updated_at": "2025-01-01T08:00:00Z"
+    }
+  }
+]
