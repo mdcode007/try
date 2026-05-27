@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TRAC — Habit Tracker
 
 > **Build consistency. Track progress. Stay accountable.**
@@ -317,3 +318,6 @@ For production environments:
 ## License
 
 This project is intended for educational and personal use.
+=======
+# International-university_of_applied_science_project
+>>>>>>> f9509b7f8c0ce11bd64b8cdc09d9de9d24cc8ff5
