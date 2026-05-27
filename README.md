@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # TRAC — Habit Tracker
 
 > **Build consistency. Track progress. Stay accountable.**
@@ -321,3 +322,6 @@ This project is intended for educational and personal use.
 =======
 # International-university_of_applied_science_project
 >>>>>>> f9509b7f8c0ce11bd64b8cdc09d9de9d24cc8ff5
+=======
+
+>>>>>>> abd979236cb39310062b6b18457fcbc41c8d4f06
